@@ -13,7 +13,8 @@ class SchedulesController < ApplicationController
   def show
     @schedule = Schedule.find_by_id(params[:id])
     if @schedule
-      render json: @schedule, status: :ok
+      #schedule_appointments = @schedule.appointments
+      render json: @schedule,status: :ok
     else
       render json: {errorMessage:"no schedule with id: #{params[:id]}"}, status: :not_found
     end
@@ -41,6 +42,8 @@ class SchedulesController < ApplicationController
       render json: {errorMessage:"no schedule with id: #{params[:id]}"}, status: :not_found
     end
   end
+
+  private
 
   def schedule_params
     params.require(:schedule).permit(:name)
